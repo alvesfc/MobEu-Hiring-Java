@@ -81,4 +81,26 @@ public class PackerTest {
         }
         Assert.fail("Expect APIException");
     }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemCostIsMoreThan100() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemCostMoreThan100.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The item cost is can not be more than 100!", ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemWeightIsMoreThan100() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemWeightMoreThan100.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The item weight is can not be more than 100!", ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
 }
