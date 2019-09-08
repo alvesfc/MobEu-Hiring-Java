@@ -73,6 +73,10 @@ public class Packer {
             itemDomains.add(itemDomain);
         }
 
+        if(itemDomains.size() > 15){
+            throw new IllegalArgumentException("Can not have more than 15 items!");
+        }
+
         return itemDomains;
     }
 
