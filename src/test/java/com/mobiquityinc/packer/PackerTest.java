@@ -103,4 +103,15 @@ public class PackerTest {
         }
         Assert.fail("Expect APIException");
     }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemsIsMoreThan15() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemsMoreThan15.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("Can not have more than 15 items!", ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
 }
