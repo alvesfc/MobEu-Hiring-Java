@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class PackageDomain {
 
-    private double limit;
+    private Double limit;
     private List<ItemDomain> items;
 
-    public double getLimit() {
+    public Double getLimit() {
         return limit;
     }
 
-    public void setLimit(double limit) {
+    public void setLimit(Double limit) {
         this.limit = limit;
     }
 

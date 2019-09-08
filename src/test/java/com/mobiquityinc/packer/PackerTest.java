@@ -35,15 +35,12 @@ public class PackerTest {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test(expected = APIException.class)
+    @Test
     public void testReadEmptyFile() throws IOException, APIException {
-        try {
-            Packer.pack(filePath("EmptyFile.txt"));
-        } catch (APIException ex) {
-            Assert.assertEquals("File is empty!", ex.getMessage());
-            throw ex;
-        }
-        Assert.fail("Expect APIException");
+        String expected = "[]";
+        String actual = Packer.pack(filePath("EmptyFile.txt"));
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test(expected = APIException.class)

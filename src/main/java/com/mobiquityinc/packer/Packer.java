@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * The class is responsible to process a file.
@@ -36,9 +37,8 @@ public class Packer {
 
             try {
                 return Files.lines(Paths.get(filePath))
-                        .findFirst()
                         .map(Packer::buildPackageDomain)
-                        .orElseThrow((Supplier<Throwable>) () -> new APIException("File is empty!"))
+                        .collect(Collectors.toList())
                         .toString();
             } catch (Throwable ex) {
                 throw new APIException(ex.getMessage());
@@ -62,25 +62,25 @@ public class Packer {
     }
 
     private static List<ItemDomain> buildItemDomain(final String line) {
-        ItemDomain itemDomain = new ItemDomain();
         List<ItemDomain> itemDomains = new ArrayList<>();
         String[] lineArr = line.split(" ");
 
-        for (int i = 2; i <= lineArr.length; i++) {
+        for (int i = 2; i < lineArr.length; i++) {
+            ItemDomain itemDomain = new ItemDomain();
 
             try {
-                itemDomain.setId(Integer.parseInt(lineArr[2].split(",")[0].replace("(", "")));
+                itemDomain.setId(Integer.parseInt(lineArr[i].split(",")[0].replace("(", "")));
             } catch (NumberFormatException ex) {
                 throw new NumberFormatException("The item id is not a number!");
             }
 
             try {
-                itemDomain.setWeight(Double.parseDouble(lineArr[2].split(",")[1]));
+                itemDomain.setWeight(Double.parseDouble(lineArr[i].split(",")[1]));
             } catch (NumberFormatException ex) {
                 throw new NumberFormatException("The item weight is not a number!");
             }
             try {
-                itemDomain.setCost(Double.parseDouble(lineArr[2].split(",")[2]
+                itemDomain.setCost(Double.parseDouble(lineArr[i].split(",")[2]
                         .replace(")", "")
                         .replace("€", "")));
             } catch (NumberFormatException ex) {
