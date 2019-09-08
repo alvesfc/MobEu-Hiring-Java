@@ -1,15 +1,10 @@
 package com.mobiquityinc.packer;
 
-
-import com.mobiquityinc.domain.ItemDomain;
-import com.mobiquityinc.domain.PackageDomain;
 import com.mobiquityinc.exception.APIException;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PackerTest {
 
