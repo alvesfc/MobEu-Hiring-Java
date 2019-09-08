@@ -2,6 +2,11 @@ package com.mobiquityinc.packer;
 
 import com.mobiquityinc.exception.APIException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * The class is responsible to process a file.
  * @author alvesfc
@@ -18,7 +23,12 @@ public class Packer {
    * @return {@link String} with processing return.
    * @throws APIException - Exception always that finding a constraint.
    */
-  public static String pack(String filePath) throws APIException {
-    return null;
+  public static String pack(String filePath) throws APIException, IOException {
+    Path path = Paths.get(filePath);
+    if(path.toFile().exists()){
+      return Files.lines(Paths.get(filePath)).toString();
+    }else {
+      throw new IOException("File not exists!");
+    }
   }
 }
