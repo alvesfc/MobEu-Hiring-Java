@@ -26,7 +26,7 @@ public class Packer {
   public static String pack(String filePath) throws APIException, IOException {
     Path path = Paths.get(filePath);
     if(path.toFile().exists()){
-      return Files.lines(Paths.get(filePath)).toString();
+      return Files.lines(Paths.get(filePath)).findFirst().orElse("");
     }else {
       throw new IOException("File not exists!");
     }
