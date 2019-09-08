@@ -67,28 +67,38 @@ public class Packer {
 
         for (int i = 2; i < lineArr.length; i++) {
             ItemDomain itemDomain = new ItemDomain();
-
-            try {
-                itemDomain.setId(Integer.parseInt(lineArr[i].split(",")[0].replace("(", "")));
-            } catch (NumberFormatException ex) {
-                throw new NumberFormatException("The item id is not a number!");
-            }
-
-            try {
-                itemDomain.setWeight(Double.parseDouble(lineArr[i].split(",")[1]));
-            } catch (NumberFormatException ex) {
-                throw new NumberFormatException("The item weight is not a number!");
-            }
-            try {
-                itemDomain.setCost(Double.parseDouble(lineArr[i].split(",")[2]
-                        .replace(")", "")
-                        .replace("€", "")));
-            } catch (NumberFormatException ex) {
-                throw new NumberFormatException("The item cost is not a number!");
-            }
+            itemDomain.setId(buildItemID(lineArr[i]));
+            itemDomain.setWeight(buildItemWeight(lineArr[i]));
+            itemDomain.setCost(buildItemCost(lineArr[i]));
             itemDomains.add(itemDomain);
         }
 
         return itemDomains;
+    }
+
+    private static Integer buildItemID(String s) {
+        try {
+            return Integer.parseInt(s.split(",")[0].replace("(", ""));
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("The item id is not a number!");
+        }
+    }
+
+    private static Double buildItemWeight(String s) {
+        try {
+            return Double.parseDouble(s.split(",")[1]);
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("The item weight is not a number!");
+        }
+    }
+
+    private static Double buildItemCost(String s) {
+        try {
+            return Double.parseDouble(s.split(",")[2]
+                    .replace(")", "")
+                    .replace("€", ""));
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("The item cost is not a number!");
+        }
     }
 }
