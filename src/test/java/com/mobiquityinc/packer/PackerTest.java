@@ -38,4 +38,48 @@ public class PackerTest {
 
         Assert.assertEquals(expected,actual);
     }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenPackageLimitIsNotNumber() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("PackageLimitNotNumber.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The package limit is not a number!",ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemIDtIsNotNumber() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemIDNotNumber.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The item id is not a number!",ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemWeightIsNotNumber() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemWeightNotNumber.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The item weight is not a number!",ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenItemCostIsNotNumber() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("ItemCostNotNumber.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The item cost is not a number!",ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
 }
