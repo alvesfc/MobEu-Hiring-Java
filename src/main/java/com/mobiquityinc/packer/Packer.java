@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -41,7 +40,7 @@ public class Packer {
                         .map(Packer::buildPackageDomain)
                         .orElseThrow((Supplier<Throwable>) () -> new APIException("File is empty!"))
                         .toString();
-            }catch (Throwable ex){
+            } catch (Throwable ex) {
                 throw new APIException(ex.getMessage());
             }
         } else {
@@ -49,7 +48,7 @@ public class Packer {
         }
     }
 
-    private static PackageDomain buildPackageDomain(final String line)  {
+    private static PackageDomain buildPackageDomain(final String line) {
         PackageDomain packageDomain = new PackageDomain();
 
         try {
@@ -62,30 +61,33 @@ public class Packer {
         return packageDomain;
     }
 
-    private static List<ItemDomain> buildItemDomain(final String line)  {
+    private static List<ItemDomain> buildItemDomain(final String line) {
         ItemDomain itemDomain = new ItemDomain();
         List<ItemDomain> itemDomains = new ArrayList<>();
         String[] lineArr = line.split(" ");
-        try {
-            itemDomain.setId(Integer.parseInt(lineArr[2].split(",")[0].replace("(","")));
-        } catch (NumberFormatException ex) {
-            throw new NumberFormatException("The item id is not a number!");
-        }
 
-        try {
-            itemDomain.setWeight(Double.parseDouble(lineArr[2].split(",")[1]));
-        } catch (NumberFormatException ex) {
-            throw new NumberFormatException("The item weight is not a number!");
-        }
+        for (int i = 2; i <= lineArr.length; i++) {
 
-        try {
-            itemDomain.setCost(Double.parseDouble(lineArr[2].split(",")[2]
-                    .replace(")","")
-            .replace("€","")));
-        } catch (NumberFormatException ex) {
-            throw new NumberFormatException("The item cost is not a number!");
+            try {
+                itemDomain.setId(Integer.parseInt(lineArr[2].split(",")[0].replace("(", "")));
+            } catch (NumberFormatException ex) {
+                throw new NumberFormatException("The item id is not a number!");
+            }
+
+            try {
+                itemDomain.setWeight(Double.parseDouble(lineArr[2].split(",")[1]));
+            } catch (NumberFormatException ex) {
+                throw new NumberFormatException("The item weight is not a number!");
+            }
+            try {
+                itemDomain.setCost(Double.parseDouble(lineArr[2].split(",")[2]
+                        .replace(")", "")
+                        .replace("€", "")));
+            } catch (NumberFormatException ex) {
+                throw new NumberFormatException("The item cost is not a number!");
+            }
+            itemDomains.add(itemDomain);
         }
-        itemDomains.add(itemDomain);
 
         return itemDomains;
     }
