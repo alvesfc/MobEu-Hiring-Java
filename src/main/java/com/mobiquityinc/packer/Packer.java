@@ -57,6 +57,11 @@ public class Packer {
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("The package limit is not a number!");
         }
+
+        if(packageDomain.getLimit() > 100){
+            throw new IllegalArgumentException("The package limit is can not be more than 100!");
+        }
+
         packageDomain.setItems(buildItemDomain(line));
         return packageDomain;
     }
