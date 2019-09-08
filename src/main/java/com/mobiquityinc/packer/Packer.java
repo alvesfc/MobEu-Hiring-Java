@@ -86,7 +86,13 @@ public class Packer {
 
     private static Double buildItemWeight(String s) {
         try {
-            return Double.parseDouble(s.split(",")[1]);
+            Double value = Double.parseDouble(s.split(",")[1]);
+
+            if(value > 100D){
+                throw new IllegalArgumentException("The item weight is can not be more than 100!");
+            }
+
+            return value;
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("The item weight is not a number!");
         }
@@ -94,9 +100,15 @@ public class Packer {
 
     private static Double buildItemCost(String s) {
         try {
-            return Double.parseDouble(s.split(",")[2]
+            Double value =Double.parseDouble(s.split(",")[2]
                     .replace(")", "")
                     .replace("€", ""));
+
+            if(value > 100D){
+                throw new IllegalArgumentException("The item cost is can not be more than 100!");
+            }
+
+            return value;
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("The item cost is not a number!");
         }
