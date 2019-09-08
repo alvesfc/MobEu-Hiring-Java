@@ -3,8 +3,8 @@ package com.mobiquityinc.domain;
 import java.util.List;
 
 /**
- *
  * Domain class that represents a package.
+ *
  * @author alvesfc
  * @version 1.0
  */

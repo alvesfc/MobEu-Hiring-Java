@@ -4,8 +4,8 @@ import java.util.Objects;
 
 
 /**
- *
  * Domain class that represents an item.
+ *
  * @author alvesfc
  * @version 1.0
  */
