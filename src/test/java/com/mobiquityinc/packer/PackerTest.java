@@ -9,7 +9,9 @@ import java.io.IOException;
 
 public class PackerTest {
 
-    private static final String FILE_PATH = System.getProperty("user.dir") + "/src/test/resources/MyPack.txt";
+    private static String filePath(final String fileNAme){
+        return System.getProperty("user.dir") + "/src/test/resources/" + fileNAme;
+    }
 
     @Test(expected = IOException.class)
     public void testNoFile() throws IOException {
@@ -24,7 +26,15 @@ public class PackerTest {
     @Test
     public void testReadFile() throws IOException, APIException {
         String expected = "8 : (1,15.3,€34)";
-        String actual = Packer.pack(FILE_PATH);
+        String actual = Packer.pack(filePath("MyPack.txt"));
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testReadEmptyFile() throws IOException, APIException {
+        String expected = "";
+        String actual = Packer.pack(filePath("EmptyFile.txt"));
 
         Assert.assertEquals(expected,actual);
     }
