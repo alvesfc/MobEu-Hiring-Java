@@ -114,4 +114,15 @@ public class PackerTest {
         }
         Assert.fail("Expect APIException");
     }
+
+    @Test(expected = APIException.class)
+    public void testThrowExceptionWhenPackageLimitMoreThan100() throws IOException, APIException {
+        try {
+            Packer.pack(filePath("PackageLimitMoreThan100.txt"));
+        } catch (APIException ex) {
+            Assert.assertEquals("The package limit is can not be more than 100!", ex.getMessage());
+            throw ex;
+        }
+        Assert.fail("Expect APIException");
+    }
 }
