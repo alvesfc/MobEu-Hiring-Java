@@ -24,9 +24,9 @@ public class PackerTest {
 
     @Test
     public void testReadFile() throws IOException, APIException {
-        String expected = "[PackageDomain{limit=81.0, items=[ItemDomain{id=1, weight=53.38, cost=45.0}, ItemDomain{id=2, weight=88.62, cost=98.0}]}, PackageDomain{limit=8.0, items=[ItemDomain{id=1, weight=15.3, cost=34.0}]}]";
+        String expected = "3\n" + "-\n" + "5,3\n" + "6,9\n";
         String actual = Packer.pack(filePath("MyPack.txt"));
-
+        System.out.println(expected);
         Assert.assertEquals(expected, actual);
     }
 

@@ -10,8 +10,17 @@ import java.util.List;
  */
 public class PackageDomain {
 
+    private Integer line;
     private Double limit;
     private List<ItemDomain> items;
+
+    public Integer getLine() {
+        return line;
+    }
+
+    public void setLine(Integer line) {
+        this.line = line;
+    }
 
     public Double getLimit() {
         return limit;
@@ -32,7 +41,8 @@ public class PackageDomain {
     @Override
     public String toString() {
         return "PackageDomain{" +
-                "limit=" + limit +
+                "line=" + line +
+                ", limit=" + limit +
                 ", items=" + items +
                 '}';
     }
