@@ -32,7 +32,7 @@ public class PackerTest {
 
     @Test
     public void testReadEmptyFile() throws IOException, APIException {
-        String expected = "[]";
+        String expected = "";
         String actual = Packer.pack(filePath("EmptyFile.txt"));
 
         Assert.assertEquals(expected, actual);
