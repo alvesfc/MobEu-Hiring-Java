@@ -1,6 +1,6 @@
-# Assignment: Package Challenge
+# Assignment: Package Challenge #
 
-##Introduction
+## Introduction ##
   You want to send your friend a package with different things.
   Each thing you put inside the package has such parameters as index number, weight and cost. The
   package has a weight limit. Your goal is to determine which things to put into the package so that the
@@ -8,7 +8,7 @@
   You would prefer to send a package which weighs less in case there is more than one package with the
   same price.
   
- ##Input sample
+ ## Input sample ##
    Your program should accept as its first argument a path to a filename. The input file contains several lines. Each line is one test case.
    Each line contains the weight that the package can take (before the colon) and the list of things you
    need to choose. Each thing is enclosed in parentheses where the 1 st number is a thing's index number,
@@ -21,7 +21,7 @@
    56 : (1,90.72,€13) (2,33.80,€40) (3,43.15,€10) (4,37.97,€16) (5,46.81,€36) (6,48.77,€79) (7,81.80,€45) (8,19.36,€79) (9,6.76,€64)
 ```
 
-##Output sample
+## Output sample ##
 
 For each set of things that you put into a package provide a new row in the output string (items’ index
 numbers are separated by comma). E.g.
@@ -34,7 +34,7 @@ numbers are separated by comma). E.g.
 
 ```
 
-##Constraints
+## Constraints ##
  You should write a class com.mobiquityinc.packer.Packer with a static method named pack. This method
  accepts the absolute path to a test file as a String. The test file will be in UTF-8 format. The pack method
  does return the solution as a String.
@@ -45,7 +45,7 @@ numbers are separated by comma). E.g.
 public static String pack(String filePath) throws APIException
 ```
 
-##Additional constraints:
+## Additional constraints: ##
    1. Max weight that a package can take is ≤ 100
    2. There might be up to 15 items you need to choose from
    3. Max weight and cost of an item is ≤ 100
