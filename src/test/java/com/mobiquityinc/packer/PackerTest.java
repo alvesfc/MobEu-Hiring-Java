@@ -24,9 +24,8 @@ public class PackerTest {
 
     @Test
     public void testReadFile() throws IOException, APIException {
-        String expected = "3\n" + "-\n" + "5,3\n" + "6,9\n";
+        String expected = "4\n" + "-\n" + "2,7\n" + "8,9\n";
         String actual = Packer.pack(filePath("MyPack.txt"));
-        System.out.println(expected);
         Assert.assertEquals(expected, actual);
     }
 
@@ -50,7 +49,7 @@ public class PackerTest {
     }
 
     @Test(expected = APIException.class)
-    public void testThrowExceptionWhenItemIDtIsNotNumber() throws IOException, APIException {
+    public void testThrowsAPIExceptionWhenItemIDtIsNotNumber() throws IOException, APIException {
         try {
             Packer.pack(filePath("ItemIDNotNumber.txt"));
         } catch (APIException ex) {

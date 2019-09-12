@@ -32,19 +32,35 @@ public class ResultDomain {
         return Collections.unmodifiableList(items);
     }
 
+    /**
+     * Methodo that add into the collection so that the
+     * total weight is less than or equal to the package limit and the
+     * total cost is as large as possible.
+     * @param item - Item with value.
+     */
     public void addItem(ItemDomain item) {
         if((itemsWeight + item.getWeight() <= limit)){
             this.itemsWeight = this.itemsWeight + item.getWeight();
             this.items.add(item);
         }else {
             this.items.stream()
-                    .filter(itemDomain -> itemDomain.getWeight().equals(item.getWeight())
-                    && itemDomain.getCost() < item.getCost())
+                    .filter(itemDomain -> isWeightLessAndCostLarge(item, itemDomain))
                     .forEach(itemDomain -> {
-                        items.remove(itemDomain);
-                        items.add(item);
+                        itemDomain.setId(item.getId());
+                        itemDomain.setCost(item.getCost());
                     });
         }
+    }
+
+    /**
+     * Verify if a new item into list is less or equal to old item
+     * @param newItem - Item that will be add
+     * @param oldItem - Item added
+     * @return - true or false
+     */
+    private boolean isWeightLessAndCostLarge(ItemDomain newItem, ItemDomain oldItem) {
+        return newItem.getWeight() <= oldItem.getWeight()
+                &&  newItem.getCost() >= oldItem.getCost();
     }
 
     public String result(){

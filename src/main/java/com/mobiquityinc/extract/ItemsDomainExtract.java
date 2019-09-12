@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class that extract Items from line.
  * @author alvesfc
  * @version 1.0
  */

@@ -41,13 +41,17 @@ public class Packer {
         if (path.toFile().exists()) {
             try {
                 StringBuilder  sb= new StringBuilder();
+                //Read Lines from file
                  Files.lines(Paths.get(filePath))
+                         // Transform into PackageDomain
                         .map(packageDomainExtract::extract)
                         .map(packageDomain -> {
                             ResultDomain resultDomain = new ResultDomain(packageDomain.getLine(),packageDomain.getLimit());
                             packageDomain.getItems()
                                     .stream()
-                                    .sorted((item1, item2) -> Double.compare(item2.getWeight(), item1.getWeight()))
+                                   // Sort list by cost
+                                    .sorted((item1, item2) -> Double.compare(item2.getCost(), item1.getCost()))
+                                    // and add to object
                                     .forEach(itemDomain -> resultDomain.addItem(itemDomain));
                             return resultDomain;
                         })

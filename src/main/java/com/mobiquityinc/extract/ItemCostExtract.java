@@ -2,7 +2,7 @@ package com.mobiquityinc.extract;
 
 
 /**
- *
+ *  Class that extract Item cost from line.
  * @author alvesfc
  * @version 1.0
  */
